@@ -22,6 +22,7 @@
                 {
                     cashMoneyMade = prices[i] - minPrice;
                 }
+                
             }
             return cashMoneyMade;
         }
