@@ -79,7 +79,11 @@ namespace QueueImplementation
 
         public T Peek() 
         {
-            return this.Head.Value;
+            if (this.Head.Value != null)
+            {
+                return this.Head.Value;
+            }
+            return default(T);
         }
     }
 }
