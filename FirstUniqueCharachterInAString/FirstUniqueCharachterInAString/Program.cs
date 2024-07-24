@@ -9,6 +9,11 @@
 
         public static int FirstUniqChar(string s)
         {
+
+            //ONE LINE SOLUTION, LINQ(NOT FAST)
+            //return s.Select((c, i) => new { Char = c, Index = i }).GroupBy(x => x.Char).Where(g => g.Count() == 1).Select(g => g.First().Index).DefaultIfEmpty(-1).First();
+            
+            
             Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
             foreach (char letter in s)
             {
