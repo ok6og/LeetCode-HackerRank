@@ -4,26 +4,33 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GroupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+            var result = GroupAnagrams(new string[] { "eat", "tea", "tan", "ate", "nat", "bat" });
+            foreach (var group in result)
+            {
+                Console.WriteLine(string.Join(", ", group));
+            }
         }
 
         public static IList<IList<string>> GroupAnagrams(string[] strs)
         {
-            for (int i = 0; i < strs.Length; i++)
+            Dictionary<string, IList<string>> keyValuePairs = new Dictionary<string, IList<string>>();
+
+            string wordAnagram;
+
+            foreach (string word in strs)
             {
-                string[] anagrams = [];
-
-                Dictionary<char,int> keyValuePairs = new Dictionary<char,int>();
-
-                foreach (char smallWord in strs[i])
+                wordAnagram = String.Concat(word.OrderBy(x => x));
+                if (keyValuePairs.ContainsKey(wordAnagram))
                 {
-                    if (keyValuePairs.ContainsKey(smallWord))
-                    {
-                        keyValuePairs[smallWord]++;
-                    }
-                    keyValuePairs.Add(smallWord, 1);
+                    keyValuePairs[wordAnagram].Add(word);
+                }
+                else
+                {
+                    keyValuePairs[wordAnagram] = new List<string> { word };
                 }
             }
+
+            return keyValuePairs.Values.ToList();
         }
     }
 }
